@@ -1,4 +1,6 @@
-﻿namespace Model
+﻿using System;
+
+namespace Model
 {
     public class Student
     {
@@ -31,13 +33,13 @@
 
         public string Group { get; set; } = "";
 
-        public void FillRandom()
+        public void FillRandom(int seed)
         {
-            Random random = new Random();
+            Random random = new Random(seed);
 
-            Name = _names[random.NextInt64(_names.Length)];
-            Speciality = _specialities[random.NextInt64(_specialities.Length)];
-            Group = _groups[random.NextInt64(_groups.Length)];
+            Name = _names[random.Next(_names.Length)];
+            Speciality = _specialities[random.Next(_specialities.Length)];
+            Group = _groups[random.Next(_groups.Length)];
         }
     }
 }

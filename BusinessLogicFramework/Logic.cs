@@ -1,4 +1,7 @@
-﻿using Model;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using Model;
 
 namespace BusinessLogic
 {
@@ -27,10 +30,12 @@ namespace BusinessLogic
         {
             Students = new List<Student>();
 
+            int baseSeed = DateTime.Now.Millisecond;
+
             for (int i = 0; i < 8; i++)
             {
                 Student student = new Student();
-                student.FillRandom();
+                student.FillRandom(baseSeed * (100 + i));
 
                 Students.Add(student);
             }
