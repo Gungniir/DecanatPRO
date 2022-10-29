@@ -30,6 +30,26 @@ namespace ConsoleView.Commands
                 }
             }
         }
+        protected static int ReadInt(string message = "")
+        {
+            bool first = true;
+
+            while (true)
+            {
+                string input = ReadString(first ? message : "");
+                first = false;
+
+                try
+                {
+                    int result = Convert.ToInt32(input);
+                    return result;
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine("Введите число");
+                }
+            }
+        }
 
         protected static void WriteLine(string message)
         {

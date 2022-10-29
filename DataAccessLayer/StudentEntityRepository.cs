@@ -38,9 +38,18 @@ namespace DataAccessLayer
             return null;
         }
 
-        public bool Delete(Student entity)
+        public bool Delete(int id)
         {
-            return _db.Students.Remove(entity) != null;
+            Student a = _db.Students.FirstOrDefault(student => student.Id == id);
+
+            if (a == null)
+            {
+                return false;
+            }
+
+            _db.Students.Remove(a);
+            _db.SaveChanges();
+            return true;
         }
     }
 }

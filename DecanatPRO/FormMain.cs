@@ -26,6 +26,7 @@ namespace DecanatPRO
             InitializeComponent();
             InitStudentsLists();
             ReloadStudentsList();
+            ReloadZedGraph();
         }
 
         private void InitStudentsLists()
@@ -123,7 +124,7 @@ namespace DecanatPRO
 
             foreach (ListViewItem item in selected)
             {
-                _logic.DeleteStudent(item.SubItems[0].Text, item.SubItems[1].Text, item.SubItems[2].Text);
+                _logic.DeleteStudent(Convert.ToInt32(item.SubItems[3].Text));
             }
 
             buttonDelete.Enabled = false;

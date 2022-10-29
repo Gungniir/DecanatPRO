@@ -8,6 +8,7 @@ namespace BusinessLogic
 {
     public class Logic
     {
+        // private readonly IRepository<Student> _studentRepository = new StudentEntityRepository();
         private readonly IRepository<Student> _studentRepository = new StudentDapperRepository();
 
         public void AddStudent(string name, string speciality, string group)
@@ -20,14 +21,9 @@ namespace BusinessLogic
             });
         }
 
-        public bool DeleteStudent(string name, string speciality, string group)
+        public bool DeleteStudent(int id)
         {
-            return _studentRepository.Delete(new Student
-            {
-                Name = name,
-                Speciality = speciality,
-                Group = group,
-            });
+            return _studentRepository.Delete(id);
         }
 
         public void FillStudents()

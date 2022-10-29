@@ -21,20 +21,18 @@ namespace ConsoleView.Commands
 
         public void Execute()
         {
-            string name = ReadString("Введите имя студента");
-            string speciality = ReadString("Введите специальность студента");
-            string group = ReadString("Введите группу студента");
+            int id = ReadInt("Введите идентификатор студента");
 
 
-            bool result = _logic.DeleteStudent(name, speciality, group);
+            bool result = _logic.DeleteStudent(id);
 
             if (result)
             {
-                WriteLine($"Студент {name} был успешно удален из системы");
+                WriteLine($"Студент №{id} был успешно удален из системы");
             }
             else
             {
-                WriteLine($"Студент {name} не найден в системе");
+                WriteLine($"Студент №{id} не найден в системе");
             }
         }
     }

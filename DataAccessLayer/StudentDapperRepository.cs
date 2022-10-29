@@ -14,7 +14,8 @@ public class StudentDapperRepository : IRepository<Student>
 
     public StudentDapperRepository()
     {
-        _connection = new NpgsqlConnection("Server=localhost;Port=5432;User ID=decanat;Password=decanat;Database=decanat");
+        _connection =
+            new NpgsqlConnection("Server=localhost;Port=5432;User ID=decanat;Password=decanat;Database=decanat");
     }
 
     public Student Create(Student entity)
@@ -51,9 +52,9 @@ public class StudentDapperRepository : IRepository<Student>
         return entity;
     }
 
-    public bool Delete(Student entity)
+    public bool Delete(int id)
     {
-        _connection.Execute("delete from students where name = @name and speciality = @speciality and \"group\" = @group", entity);
+        _connection.Execute("delete from students where id = @id", new { id });
 
         return true;
     }
