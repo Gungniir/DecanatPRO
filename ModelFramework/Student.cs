@@ -2,7 +2,7 @@
 
 namespace Model
 {
-    public class Student
+    public class Student : IDomainObject
     {
         private readonly string[] _names = {
             "Владимир Курусь",
@@ -26,6 +26,8 @@ namespace Model
             "1",
             "2",
         };
+
+        public int Id { get; set; }
 
         public string Name { get; set; } = "";
 

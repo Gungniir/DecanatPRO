@@ -25,6 +25,7 @@ namespace DecanatPRO
             _logic = logic;
             InitializeComponent();
             InitStudentsLists();
+            ReloadStudentsList();
         }
 
         private void InitStudentsLists()
@@ -56,6 +57,7 @@ namespace DecanatPRO
                 ListViewItem item = new ListViewItem(student.Name);
                 item.SubItems.Add(student.Speciality);
                 item.SubItems.Add(student.Group);
+                item.SubItems.Add(student.Id.ToString());
             
                 listViewStudents.Items.Add(item);
             }

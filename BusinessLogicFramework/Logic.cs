@@ -2,16 +2,17 @@
 using System.Collections.Generic;
 using System.Linq;
 using Model;
+using DataAccessLayer;
 
 namespace BusinessLogic
 {
     public class Logic
     {
-        private List<Student> Students { get; set; } = new();
+        private readonly IRepository<Student> _studentRepository = new StudentDapperRepository();
 
         public void AddStudent(string name, string speciality, string group)
         {
-            Students.Add(new Student
+            _studentRepository.Create(new Student
             {
                 Name = name,
                 Speciality = speciality,
@@ -21,15 +22,16 @@ namespace BusinessLogic
 
         public bool DeleteStudent(string name, string speciality, string group)
         {
-            return Students.RemoveAll(student =>
-                student.Name == name && student.Speciality == speciality && student.Group == group
-            ) > 0;
+            return _studentRepository.Delete(new Student
+            {
+                Name = name,
+                Speciality = speciality,
+                Group = group,
+            });
         }
 
         public void FillStudents()
         {
-            Students = new List<Student>();
-
             int baseSeed = DateTime.Now.Millisecond;
 
             for (int i = 0; i < 8; i++)
@@ -37,18 +39,18 @@ namespace BusinessLogic
                 Student student = new Student();
                 student.FillRandom(baseSeed * (100 + i));
 
-                Students.Add(student);
+                _studentRepository.Create(student);
             }
         }
 
         public List<Student> ShowTable()
         {
-            return Students;
+            return _studentRepository.Read();
         }
 
         public IEnumerable<IGrouping<string, Student>> ShowGist()
         {
-            return Students.GroupBy(student => student.Speciality);
+            return _studentRepository.Read().GroupBy(student => student.Speciality);
         }
     }
 }
