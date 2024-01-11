@@ -2,8 +2,11 @@
 
 using BusinessLogic;
 using ConsoleView.Commands;
+using Ninject;
 
-Logic logic = new();
-Kernel kernel = new(logic);
+IKernel ninjectKernel = new StandardKernel(new SimpleConfigModule());
 
-kernel.Run();
+Logic logic = ninjectKernel.Get<Logic>();
+Kernel cosnoleKernel = new(logic);
+
+cosnoleKernel.Run();
