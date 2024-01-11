@@ -8,8 +8,8 @@ namespace BusinessLogic
 {
     public class Logic
     {
-        // private readonly IRepository<Student> _studentRepository = new StudentEntityRepository();
-        private readonly IRepository<Student> _studentRepository = new StudentDapperRepository();
+        private readonly IRepository<Student> _studentRepository = new StudentEntityRepository();
+        // private readonly IRepository<Student> _studentRepository = new StudentDapperRepository();
 
         public void AddStudent(string name, string speciality, string group)
         {
